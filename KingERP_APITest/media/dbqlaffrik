@@ -1,0 +1,219 @@
+-- --------------------------------------------------------
+-- Hôte :                        127.0.0.1
+-- Version du serveur:           10.2.8-MariaDB - mariadb.org binary distribution
+-- SE du serveur:                Win64
+-- HeidiSQL Version:             9.4.0.5125
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+-- Export de la structure de la base pour dbaffrik
+CREATE DATABASE IF NOT EXISTS `dbaffrik` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `dbaffrik`;
+
+-- Export de la structure de la table dbaffrik. answer
+CREATE TABLE IF NOT EXISTS `answer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) DEFAULT NULL,
+  `prenom` longtext DEFAULT NULL,
+  `adresse` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `societe` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Export de données de la table dbaffrik.answer : ~23 rows (environ)
+DELETE FROM `answer`;
+/*!40000 ALTER TABLE `answer` DISABLE KEYS */;
+INSERT INTO `answer` (`id`, `nom`, `prenom`, `adresse`, `email`, `societe`) VALUES
+	(1, 'med', NULL, NULL, NULL, NULL),
+	(2, 'John', 'Doe', 'john@example.com', 'john@example.com', 'john@example.com'),
+	(3, 'John', 'Doe', 'john@example.com', 'john@example.com', 'john@example.com'),
+	(4, 'John', 'Doe', 'john@example.com', 'john@example.com', 'john@example.com'),
+	(5, 'John', 'Doe', 'john@example.com', 'john@example.com', 'john@example.com'),
+	(6, 'John', 'Doe', 'john@example.com', 'john@example.com', 'john@example.com'),
+	(7, 'John', 'Doe', 'john@example.com', 'john@example.com', 'john@example.com'),
+	(8, 'John', 'Doe', 'john@example.com', 'john@example.com', 'john@example.com'),
+	(9, NULL, NULL, NULL, NULL, NULL),
+	(10, NULL, NULL, NULL, NULL, NULL),
+	(11, NULL, NULL, NULL, NULL, NULL),
+	(12, '', '', '', '', ''),
+	(13, '', '', '', '', ''),
+	(14, 'sdddddd', 'dsssss', 'dds', 'messter_karim@hotmail.com', ''),
+	(15, '', '', '', '', ''),
+	(16, 'sdddddd', 'dsssss', 'dds', 'messter_karim@hotmail.com', ''),
+	(17, '', '', '', '', ''),
+	(18, 'sdddddd', 'dsssss', 'dds', 'messter_karim@hotmail.com', ''),
+	(19, 'sdddddd', 'dsssss', 'dds', 'messter_karim@hotmail.com', ''),
+	(20, 'sdddddd', 'dsssss', 'dds', 'messter_karim@hotmail.com', ''),
+	(65, 'sdddddd', 'dsssss', 'dds', 'messter_karim@hotmail.com', ''),
+	(66, 'cxxxdddddddddddddd', 'cccccccccc', 'dddddddddddddddd', 'messter_karim@hotmail.com', 'cxxxxxxxxxx'),
+	(68, 'cxxxdddddddddddddd', 'cccccccccc', 'dddddddddddddddd', 'messter_karim@hotmail.com', 'cxxxxxxxxxx');
+/*!40000 ALTER TABLE `answer` ENABLE KEYS */;
+
+-- Export de la structure de la table dbaffrik. answer_detail
+CREATE TABLE IF NOT EXISTS `answer_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `answer_id` int(11) NOT NULL DEFAULT 0,
+  `question_id` int(11) NOT NULL,
+  `response` varchar(1000) DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_answer_detail_answer` (`answer_id`),
+  KEY `FK_answer_detail_question` (`question_id`),
+  CONSTRAINT `FK_answer_detail_answer` FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`),
+  CONSTRAINT `FK_answer_detail_question` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Export de données de la table dbaffrik.answer_detail : ~26 rows (environ)
+DELETE FROM `answer_detail`;
+/*!40000 ALTER TABLE `answer_detail` DISABLE KEYS */;
+INSERT INTO `answer_detail` (`id`, `answer_id`, `question_id`, `response`, `level`) VALUES
+	(24, 66, 1, 'cccccccccccccccccccc', 2),
+	(25, 66, 2, 'xcccccccccccccccccc', 2),
+	(26, 66, 3, 'xccccccccccccccccccccccccc', 2),
+	(27, 66, 4, 'cccccccccccccccccccccccccccc', 2),
+	(28, 66, 5, 'xccccccccccccccxc', 3),
+	(29, 66, 6, 'cxxxxxxxxxxx', 3),
+	(30, 66, 7, 'xccccccccccccc', 3),
+	(31, 66, 8, 'xccccccccccc', 3),
+	(32, 66, 9, 'xcdxxxxxxxxxxx', 5),
+	(33, 66, 10, 'dddddddddddd', 2),
+	(34, 66, 11, 'ddddddddddddddd', 3),
+	(35, 66, 12, 'dddddddd', 2),
+	(36, 66, 13, 'dddddddddddddd', 2),
+	(37, 68, 1, 'cccccccccccccccccccc', 2),
+	(38, 68, 2, 'xcccccccccccccccccc', 2),
+	(39, 68, 3, 'xccccccccccccccccccccccccc', 2),
+	(40, 68, 4, 'cccccccccccccccccccccccccccc', 2),
+	(41, 68, 5, 'xccccccccccccccxc', 3),
+	(42, 68, 6, 'cxxxxxxxxxxx', 3),
+	(43, 68, 7, 'xccccccccccccc', 3),
+	(44, 68, 8, 'xccccccccccc', 3),
+	(45, 68, 9, 'xcdxxxxxxxxxxx', 5),
+	(46, 68, 10, 'dddddddddddd', 2),
+	(47, 68, 11, 'ddddddddddddddd', 3),
+	(48, 68, 12, 'dddddddd', 2),
+	(49, 68, 13, 'dddddddddddddd', 2);
+/*!40000 ALTER TABLE `answer_detail` ENABLE KEYS */;
+
+-- Export de la structure de la table dbaffrik. question
+CREATE TABLE IF NOT EXISTS `question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question_text` varchar(50) DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Export de données de la table dbaffrik.question : ~13 rows (environ)
+DELETE FROM `question`;
+/*!40000 ALTER TABLE `question` DISABLE KEYS */;
+INSERT INTO `question` (`id`, `question_text`, `level`) VALUES
+	(1, 'Bonjour', 1),
+	(2, 'ddddddddddddddddddddddddddddddddd', NULL),
+	(3, 'ddddddddddddddddddddddddddddddddd', NULL),
+	(4, '123456789', NULL),
+	(5, 'kestion', NULL),
+	(6, 'kestion', NULL),
+	(7, 'kestion', NULL),
+	(8, 'ffffff', NULL),
+	(9, 'tgrrrrrrrrrrrrrrrrrrr', 1),
+	(10, 'rdddddddddd', 5),
+	(11, 'rtttttttttttttttttt', 1),
+	(12, 'rtttttttttttttttttt', 1),
+	(13, 'fddddddddddddd', 7);
+/*!40000 ALTER TABLE `question` ENABLE KEYS */;
+
+-- Export de la structure de la table dbaffrik. satisfaction
+CREATE TABLE IF NOT EXISTS `satisfaction` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `prenom` longtext NOT NULL,
+  `adresse` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `societe` varchar(200) NOT NULL,
+  `question1` varchar(255) NOT NULL,
+  `question2` varchar(255) NOT NULL,
+  `question3` varchar(255) NOT NULL,
+  `question4` varchar(255) NOT NULL,
+  `question5` varchar(255) NOT NULL,
+  `question6` varchar(255) NOT NULL,
+  `question7` varchar(255) NOT NULL,
+  `question8` varchar(255) NOT NULL,
+  `question9` varchar(255) NOT NULL,
+  `question10` varchar(255) NOT NULL,
+  `vote` int(5) NOT NULL,
+  `vote1` int(5) NOT NULL,
+  `vote2` int(5) NOT NULL,
+  `vote3` int(5) NOT NULL,
+  `vote4` int(5) NOT NULL,
+  `vote5` int(5) NOT NULL,
+  `vote6` int(5) NOT NULL,
+  `vote7` int(5) NOT NULL,
+  `vote8` int(5) NOT NULL,
+  `vote9` int(5) NOT NULL,
+  `vote10` int(5) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Export de données de la table dbaffrik.satisfaction : ~10 rows (environ)
+DELETE FROM `satisfaction`;
+/*!40000 ALTER TABLE `satisfaction` DISABLE KEYS */;
+INSERT INTO `satisfaction` (`id`, `nom`, `prenom`, `adresse`, `email`, `societe`, `question1`, `question2`, `question3`, `question4`, `question5`, `question6`, `question7`, `question8`, `question9`, `question10`, `vote`, `vote1`, `vote2`, `vote3`, `vote4`, `vote5`, `vote6`, `vote7`, `vote8`, `vote9`, `vote10`) VALUES
+	(292, 'Dhaouadi', 'Mariem', 'Bizerte', 'mariem@gmail.com ', 'Thewebside', 'dddddd', 'dddddd', 'rgrgg', 'grgg ', 'gtgtg', 'ttgt', 'gtgt', 'gtgtg', 'tgtg ', 'tgtg', 0, 1, 1, 2, 1, 2, 1, 3, 3, 3, 2),
+	(294, 'zaouaghi', 'Ahlem', 'tunis', 'mayikamandageorgesaymard@yahoo.fr ', 'Thewebside', 'sdsd', 'dsds', 'sdsd', 'dsds ', 'sds', 'sxdsd', 'sdssd', 'dsds', 'dgdsdssd ', 'dsd', 0, 1, 3, 3, 2, 3, 3, 3, 2, 3, 1),
+	(295, 'mayi', 'GEORGES', 'B', 'mmmm@gmail.com ', 'Thewebside', 'satisfaite', 'trÃ©s Bien', 'bbb', 'kli ', 'ddd', 'f', 'bb', 'sxsxsx', 'xsx ', 'xsxs', 0, 3, 2, 2, 0, 3, 2, 2, 3, 2, 2),
+	(297, 'malika', 'malika', 'malika', 'malika@gmail.com ', 'Thewebside', 'satisfaite', 'bien', 'ddd', 'jhkjk ', 'ddd', 'dddd', 'fgg', 'ddd', 'bb ', 'top', 0, 2, 5, 3, 0, 3, 3, 2, 5, 1, 5),
+	(298, 'Mesfar', 'Slim', 'Tunis', 'georgesaymardkamanda@yahoo.com ', 'Thewebside', 'dfdf', 'dfdf', 'dfdf', 'zeee ', 'zez', 'ez', 'dfdfdf', 'fddfd', 'dfdf ', 'fdf', 0, 2, 1, 3, 0, 0, 0, 2, 1, 1, 5),
+	(305, 'Dhaouadi', 'Cyrine', 'Tunis', 'cy@gmail.com ', 'Thewebside', 'df', 'dfdfdf', 'dfdrfdf', 'dfdfdf ', 'fdfd', 'dfdf', 'dfdf', 'dfdfdd', 'dfdfd ', 'dfdf', 0, 2, 2, 2, 5, 2, 3, 5, 1, 2, 1),
+	(307, 'Dhaouadi', 'Cyrine', 'Tunis', 'cy@gmail.com ', 'Thewebside', 'df', 'dfdfdf', 'dfdrfdf', 'dfdfdf ', 'fdfd', 'dfdf', 'dfdf', 'dfdfdd', 'dfdfd ', 'dfdf', 0, 2, 2, 2, 5, 2, 3, 5, 1, 2, 1),
+	(308, 'Dhaouadi', 'Cyrine', 'Tunis', 'cy@gmail.com ', 'Thewebside', 'df', 'dfdfdf', 'dfdrfdf', 'dfdfdf ', 'fdfd', 'dfdf', 'dfdf', 'dfdfdd', 'dfdfd ', 'dfdf', 0, 2, 2, 2, 5, 2, 3, 5, 1, 2, 1),
+	(309, 'Dhaouadi', 'Cyrine', 'Tunis', 'cy@gmail.com ', 'Thewebside', 'df', 'dfdfdf', 'dfdrfdf', 'dfdfdf ', 'fdfd', 'dfdf', 'dfdf', 'dfdfdd', 'dfdfd ', 'dfdf', 0, 2, 2, 2, 5, 2, 3, 5, 1, 2, 1),
+	(310, 'Dhaouadi', 'Cyrine', 'Tunis', 'cy@gmail.com ', 'Thewebside', 'df', 'dfdfdf', 'dfdrfdf', 'dfdfdf ', 'fdfd', 'dfdf', 'dfdf', 'dfdfdd', 'dfdfd ', 'dfdf', 0, 2, 2, 2, 5, 2, 3, 5, 1, 2, 1);
+/*!40000 ALTER TABLE `satisfaction` ENABLE KEYS */;
+
+-- Export de la structure de la table dbaffrik. users
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(15) NOT NULL,
+  `user_email` varchar(40) NOT NULL,
+  `user_pass` varchar(255) NOT NULL,
+  `joining_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- Export de données de la table dbaffrik.users : 1 rows
+DELETE FROM `users`;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_pass`, `joining_date`) VALUES
+	(1, 'med', 'boutakatmed@gmail.com', '$2y$10$MfxSjNtrVxNZ4ESr5nDuyOPRMES2Ms0DiwgtgNqJxKBEfSBWdI3u2', '2017-12-08 13:31:26');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+-- Export de la structure de la vue dbaffrik. view_statistique
+-- Création d'une table temporaire pour palier aux erreurs de dépendances de VIEW
+CREATE TABLE `view_statistique` (
+	`level1` BIGINT(21) NULL,
+	`level2` BIGINT(21) NULL,
+	`level3` BIGINT(21) NULL,
+	`level4` BIGINT(21) NULL,
+	`level5` BIGINT(21) NULL
+) ENGINE=MyISAM;
+
+-- Export de la structure de la vue dbaffrik. view_statistique
+-- Suppression de la table temporaire et création finale de la structure d'une vue
+DROP TABLE IF EXISTS `view_statistique`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `view_statistique` AS select 
+(select count(*) from answer_detail a where a.`level`=1) as 'level1',
+(select count(*) from answer_detail a where a.`level`=2) as 'level2',
+(select count(*) from answer_detail a where a.`level`=3) as 'level3',
+(select count(*) from answer_detail a where a.`level`=4) as 'level4',
+(select count(*) from answer_detail a where a.`level`=5) as 'level5' ;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
